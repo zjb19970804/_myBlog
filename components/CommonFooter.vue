@@ -1,0 +1,21 @@
+<template>
+  <div class="CommonFooter flexAlignCenter">
+    <div class="myContainer">
+      本页面由Nuxt+Koa2打造, 学习请前往
+      <a href="https://zh.nuxtjs.org" target="_blank" rel="nofollow">Nuxt</a>、
+      <a href="https://koa.bootcss.com/" target="_blank" rel="nofollow">Koa2</a>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {}
+</script>
+
+<style lang="less" scoped>
+.CommonFooter {
+  height: 76px;
+  color: #ccc;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+</style>

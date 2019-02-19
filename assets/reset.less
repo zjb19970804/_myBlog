@@ -1,0 +1,51 @@
+body {
+    padding-right: 0 !important;
+    color: #333;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei', Arial, Helvetica, sans-serif;
+}
+* {
+    padding: 0;
+}
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+}
+li {
+    float: left;
+}
+p {
+    margin: 0;
+}
+img {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+input,
+textarea {
+    outline: none;
+    border: none;
+    /*清除移动端默认的表单样式*/
+    -webkit-appearance: none;
+}
+
+textarea {
+    overflow: auto;
+    resize: none;
+}
+
+.clearfix::before,
+.clearfix::after {
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    content: "";
+    line-height: 0;
+}

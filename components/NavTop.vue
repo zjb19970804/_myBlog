@@ -38,6 +38,9 @@ export default {}
 
 <style lang="less" scoped>
 .nav-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
   height: 60px;
   background-color: rgba(255, 255, 255, 0.3);
   .mynav-box {

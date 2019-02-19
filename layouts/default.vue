@@ -31,6 +31,7 @@ html {
 body {
   background: url('../static/globl/1.jpg') center center no-repeat;
   background-attachment: fixed;
+  padding-top: 80px;
 }
 
 *,

@@ -30,6 +30,13 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  methods: {
+    // @vuese
+    // 测试方法
+    letgo() {
+      alert('111')
+    }
   }
 }
 </script>

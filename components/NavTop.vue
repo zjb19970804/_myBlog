@@ -7,7 +7,7 @@
           <nuxt-link to="/">首页</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/">学习</nuxt-link>
+          <nuxt-link to="/article">学习</nuxt-link>
         </li>
         <li>
           <nuxt-link to="/">其它</nuxt-link>
@@ -39,10 +39,11 @@ export default {}
 <style lang="less" scoped>
 .nav-top {
   position: fixed;
+  z-index: 1;
   top: 0;
   width: 100%;
   height: 60px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.8);
   .mynav-box {
     height: inherit;
     &-title {
@@ -56,6 +57,7 @@ export default {}
       line-height: 60px;
       font-size: 16px;
       li {
+        float: left;
         width: 100px;
         a {
           display: inline-block;
@@ -63,7 +65,7 @@ export default {}
           text-align: center;
         }
         &:hover {
-          background-color: rgba(0, 0, 0, 0.4);
+          background-color: rgba(0, 0, 0, 0.1);
         }
       }
     }

@@ -1,18 +1,48 @@
 <template>
   <div>
+    <!-- 顶部导航栏 -->
     <NavTop />
+    <!-- 面包屑导航 -->
+    <a-breadcrumb class="myContainer" :routes="$router.options.routes" v-if="$route.path!=='/'">
+      <template slot="itemRender" slot-scope="{route, params, routes, paths}">
+        <span v-if="routes.indexOf(route) === routes.length - 1">
+          {{ navName(route.name) }}
+        </span>
+        <router-link v-else :to="paths.join('/')">
+          {{ navName(route.name) }}
+        </router-link>
+      </template>
+    </a-breadcrumb>
+
     <nuxt />
+
+    <!-- 底部通用组件 -->
     <CommonFooter />
+    <!-- 页面滑至顶部组件 -->
+    <a-back-top />
   </div>
 </template>
 
 <script>
 import NavTop from '../components/NavTop'
 import CommonFooter from '../components/CommonFooter'
+const { log } = console
 export default {
   components: {
     NavTop,
     CommonFooter
+  },
+  mounted() {
+    log(this.$router)
+  },
+  methods: {
+    navName(pathName) {
+      const nameObj = {
+        index: '首页',
+        article: '文章'
+      }
+      return nameObj[pathName]
+    }
   }
 }
 </script>
@@ -29,44 +59,23 @@ html {
   box-sizing: border-box;
 }
 body {
-  background: url('../static/globl/1.jpg') center center no-repeat;
-  background-attachment: fixed;
+  /* background: url('../static/globl/1.jpg') center center no-repeat;
+  background-attachment: fixed; */
   padding-top: 80px;
+  background-color: #f0f0f0;
 }
+.ant-breadcrumb {
+  margin-bottom: 20px;
+}
+/* #__nuxt {
+  padding-top: 80px;
+  background-color: rgba(0, 0, 0, 0.8);
+} */
 
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
 }
 </style>

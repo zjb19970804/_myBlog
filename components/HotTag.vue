@@ -50,6 +50,7 @@ export default {}
   &-list {
     padding: 20px 0 20px 10px;
     li {
+      float: left;
       margin: 0 10px 10px 0;
     }
   }

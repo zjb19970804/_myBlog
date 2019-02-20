@@ -18,6 +18,8 @@ export default {
 
 <style lang="less" scoped>
 .slideView {
+  flex: 0 0 300px;
   width: 300px;
+  margin-left: 20px;
 }
 </style>

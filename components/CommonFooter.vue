@@ -14,8 +14,9 @@ export default {}
 
 <style lang="less" scoped>
 .CommonFooter {
+  margin-top: 50px;
   height: 76px;
-  color: #ccc;
-  background-color: rgba(255, 255, 255, 0.1);
+  color: #eee;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 </style>

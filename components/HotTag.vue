@@ -1,5 +1,5 @@
 <template>
-  <div class="hotTag myModuleBox">
+  <div class="hotTag myCard">
     <h3 class="myTitle">热门标签</h3>
     <ul class="hotTag-list">
       <li>

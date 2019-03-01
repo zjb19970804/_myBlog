@@ -29,7 +29,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/antd-ui'],
+  plugins: ['@/plugins/antd-ui', '@/plugins/axiosConfig', '@/plugins/helper'],
 
   /*
   ** Nuxt.js modules
@@ -45,7 +45,6 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
-
   /*
   ** Build configuration
   */

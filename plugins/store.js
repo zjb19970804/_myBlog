@@ -1,0 +1,1 @@
+export default getStore = ({ store }) => store

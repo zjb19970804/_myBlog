@@ -1,5 +1,5 @@
 <template>
-  <div class="Recommend myModuleBox">
+  <div class="Recommend myCard">
     <h3 class="myTitle">推荐阅读</h3>
     <ul class="Recommend-list">
       <li class="Recommend-item" v-for="item in 10" :key="item">
@@ -8,8 +8,14 @@
           <div class="list-right">
             <p class="Recommend-item-title">用SVG画出拼图块，并实现拼图功能，请收下我的膝盖</p>
             <div class="Recommend-item-btm">
-              <span>2018-06-04</span>
-              <span>20次阅读</span>
+              <div>
+                <i class="iconfont icon-time"></i>
+                <span>2018-06-04</span>
+              </div>
+              <div>
+                <i class="iconfont icon-browse"></i>
+                <span>20次阅读</span>
+              </div>
             </div>
           </div>
         </nuxt-link>

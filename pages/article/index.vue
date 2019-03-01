@@ -1,5 +1,5 @@
 <template>
-  <div class="Article myContainer">
+  <div class="Article mainContent">
     <MainContent />
     <a-pagination :defaultCurrent="6" :total="500" />
   </div>

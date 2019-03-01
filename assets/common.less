@@ -1,6 +1,28 @@
+// 页面组件过渡
+.page-enter-active,
+.page-leave-active {
+  transition: opacity .3s;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
+// 页面内容最大定宽
 .myContainer {
   max-width: 1200px;
   margin: 0 auto;
+}
+.flex {
+  display: flex;
+}
+.mainContent {
+  flex: 1;
+  padding: 0 10px;
+}
+.myColumns {
+  align-items: flex-start;
+  margin-left: -10px;
+  margin-right: -10px;
 }
 .flexAlignCenter {
   display: flex;
@@ -12,8 +34,8 @@
   border-bottom: 1px solid #cecece;
   padding: 10px 15px;
 }
-// 模块的盒子
-.myModuleBox {
+// 卡片的通用样式
+.myCard {
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);

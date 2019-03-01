@@ -2,19 +2,14 @@
   <div>
     <!-- 顶部导航栏 -->
     <NavTop />
-    <!-- 面包屑导航 -->
-    <a-breadcrumb class="myContainer" :routes="$router.options.routes" v-if="$route.path!=='/'">
-      <template slot="itemRender" slot-scope="{route, params, routes, paths}">
-        <span v-if="routes.indexOf(route) === routes.length - 1">
-          {{ navName(route.name) }}
-        </span>
-        <router-link v-else :to="paths.join('/')">
-          {{ navName(route.name) }}
-        </router-link>
-      </template>
-    </a-breadcrumb>
 
-    <nuxt />
+    <div class="myContainer">
+      <div class="flex myColumns">
+        <SlideLeft />
+        <nuxt />
+        <SlideRight />
+      </div>
+    </div>
 
     <!-- 底部通用组件 -->
     <CommonFooter />
@@ -26,23 +21,14 @@
 <script>
 import NavTop from '../components/NavTop'
 import CommonFooter from '../components/CommonFooter'
-const { log } = console
+import SlideLeft from '../components/SlideLeft'
+import SlideRight from '../components/SlideRight'
 export default {
   components: {
     NavTop,
-    CommonFooter
-  },
-  mounted() {
-    log(this.$router)
-  },
-  methods: {
-    navName(pathName) {
-      const nameObj = {
-        index: '首页',
-        article: '文章'
-      }
-      return nameObj[pathName]
-    }
+    CommonFooter,
+    SlideLeft,
+    SlideRight
   }
 }
 </script>
@@ -64,13 +50,6 @@ body {
   padding-top: 80px;
   background-color: #f0f0f0;
 }
-.ant-breadcrumb {
-  margin-bottom: 20px;
-}
-/* #__nuxt {
-  padding-top: 80px;
-  background-color: rgba(0, 0, 0, 0.8);
-} */
 
 *,
 *:before,

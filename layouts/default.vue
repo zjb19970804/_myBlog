@@ -6,7 +6,9 @@
     <div class="myContainer">
       <div class="flex myColumns">
         <SlideLeft />
+
         <nuxt />
+
         <SlideRight />
       </div>
     </div>

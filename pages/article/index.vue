@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .ant-pagination {
   margin-top: 50px;
   text-align: center;

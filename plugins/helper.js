@@ -5,7 +5,7 @@ export default ({ app }, inject) => {
     try {
       successFn()
     } catch (e) {
-      error(e)
+      error('[error]: ' + e)
     }
   })
 }

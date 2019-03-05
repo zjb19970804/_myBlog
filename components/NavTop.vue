@@ -23,7 +23,7 @@
         <div class="mynav-box-user">
           <!-- 登录状态 -->
           <div v-if="token" class="logined">
-            登录了
+            <a-button @click="logout">退出</a-button>
           </div>
           <!-- 未登录状态 -->
           <div v-else class="unlogin">
@@ -37,7 +37,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
+import Cookie from 'js-cookie'
 export default {
   data: () => ({
     // 上一次滚动条距顶部的距离
@@ -55,12 +56,20 @@ export default {
   },
   computed: mapState(['token']),
   methods: {
+    ...mapMutations(['setToken', 'setUser']),
     // @vuese
     // 判断滚动条的高度，并与上一次的相比较
     listenScroll() {
       const newScrollTop = document.documentElement.scrollTop || document.body.scrollTop
       this.isShow = newScrollTop < 60 ? true : newScrollTop < this.scrollTop
       this.scrollTop = newScrollTop
+    },
+    // @vuese
+    // 退出登录
+    logout() {
+      this.setToken()
+      this.setUser()
+      Cookie.remove('token')
     }
   }
 }

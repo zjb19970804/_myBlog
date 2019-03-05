@@ -4,12 +4,13 @@ import qs from 'qs'
 let _store
 export default ({ store }) => (_store = store)
 axios.defaults.baseURL = process.env === 'production' ? '' : 'http://127.0.0.1:7001'
+axios.defaults.withCredentials = true
 axios.defaults.timeout = 10000
 axios.interceptors.request.use(
   (config) => {
     config.data = qs.stringify(config.data)
     if (_store.state.token) {
-      config.headers.Authorization = _store.state.token
+      config.headers.Authorization = _store.state.token.token
     }
     return config
   },

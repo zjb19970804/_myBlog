@@ -21,7 +21,7 @@
         <div class="about-title">
           简短介绍
         </div>
-        <p>来自湖北武汉，18年正式参加工作，一直努力学习前端技术，一边工作一边积累经验。平时喜欢打打游戏(死肥宅天下第一！)，听听歌，看电影，每天都会抽出一两小时查看学习新技术，新黑科技。例如本网站的后台node开发、nginx部署，之前并没有接触过服务器端，都是闲暇时间查阅资料。所谓多一门技术多一点生存技能，哈哈哈哈嗝。</p>
+        <p>来自湖北武汉，18年正式参加工作，一直努力学习前端技术，一边工作一边积累经验。平时喜欢打打游戏(死肥宅天下第一！)，听听歌，看电影，每天都会抽出一两小时查看学习新技术，新黑科技。例如本网站的后台node开发、nginx部署，之前并没有接触过服务器端，都是闲暇时间查阅资料。所谓多一门技术多一点生存技能，哈哈哈哈。</p>
         <p>实在不知道说什么，祝大哥大嫂们过年好。</p>
       </div>
       <!-- 菜鸡推荐 -->
@@ -31,12 +31,11 @@
         </p>
         <ul class="about-recommend-list">
           <li v-for="(item, index) in recommendData" :key="index">
-            <p>{{ item.title }}</p>
             <a-tooltip placement="right">
               <template slot="title">
                 <span>我要过去！快点啊！</span>
               </template>
-              <a :href="item.url" rel="nofollow" target="_blank">>>传送门</a>
+              <a :href="item.url" rel="nofollow" target="_blank">{{ item.title }}</a>
             </a-tooltip>
           </li>
         </ul>
@@ -125,16 +124,20 @@ export default {
   }
   &-recommend {
     &-title {
-      line-height: 48px;
+      line-height: 28px;
+      margin-bottom: 20px;
       font-weight: bold;
       font-size: 16px;
     }
     &-list {
-      list-style: inside;
       li {
-        line-height: 36px;
-        p {
-          display: inline-block;
+        // &:not(:last-child) {
+        margin-bottom: 20px;
+        // }
+        a {
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

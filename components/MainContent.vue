@@ -1,29 +1,42 @@
 <template>
   <div class="MainContent">
-    <div class="main-item" v-for="item in 20" :key="item">
-      <nuxt-link to="/article/212312" class="main-item-img">
+    <div class="main-item" v-for="item in postData" :key="item._id">
+      <nuxt-link :to="`/article/${item._id}`" class="main-item-img">
         <img src="http://placehold.it/800x200" alt="">
       </nuxt-link>
       <div class="main-item-right">
-        <nuxt-link class="main-item-title" to="/article/212312">安费诺开始的你看过的干嘛是你单独发多少</nuxt-link>
-        <p class="main-item-content">安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少安费诺开始的你看过的干嘛是你单独发多少</p>
+        <nuxt-link class="main-item-title" :to="`/article/${item._id}`">{{ item.title }}</nuxt-link>
+        <p class="main-item-content">{{ item.content }}</p>
         <div class="main-item-btm">
           <div class="iconAndText">
             <i class="iconfont icon-time"></i>
-            <span>2018-07-07</span>
+            <span>{{ item.updateTime }}</span>
           </div>
           <div class="iconAndText">
             <i class="iconfont icon-browse"></i>
-            <span>50次浏览</span>
+            <span>{{ item.watchTimes }}次浏览</span>
           </div>
           <a-button class="readMore" size="small">
-            <nuxt-link to="/article/212312">阅读更多</nuxt-link>
+            <nuxt-link :to="`/article/${item._id}`">阅读更多</nuxt-link>
           </a-button>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    postData: {
+      type: Array,
+      default: function() {
+        return []
+      }
+    }
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .MainContent {
@@ -70,6 +83,7 @@
       margin-bottom: 10px;
       overflow: hidden;
       text-overflow: ellipsis;
+      word-break: break-all;
     }
     &-btm {
       display: flex;

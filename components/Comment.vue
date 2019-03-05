@@ -3,12 +3,12 @@
     <a-comment>
       <a-avatar
         slot="avatar"
-        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-        alt="Han Solo"
+        :src="token&&token.avatar || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'"
+        :alt="token&&token.name"
       />
       <div slot="content">
         <a-form-item>
-          <a-textarea v-if="0" :rows="4" @change="handleChange" :value="value" ></a-textarea>
+          <a-textarea v-if="token" :rows="4" @change="handleChange" :value="value" ></a-textarea>
           <p v-else class="nologinTip">暂无评论权限，<a-button size="small" @click="githubLogin">登录</a-button>即可发表评论</p>
         </a-form-item>
         <a-form-item>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 const { log } = console
 const clientId = 'b17fdfd4cd7c3ccf21de'
 export default {
@@ -34,6 +35,7 @@ export default {
     value: '',
     submitting: false
   }),
+  computed: mapState(['token']),
   methods: {
     // @vuese
     // 文本框的回调
@@ -52,6 +54,14 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+.ant-form-item {
+  &:last-of-type {
+    text-align: right;
+  }
+}
+</style>
 
 <style lang="less" scoped>
 .nologinTip {

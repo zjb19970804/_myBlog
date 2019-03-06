@@ -13,7 +13,7 @@
 公开资料显示，货拉拉于2013年创始于香港，以平台模式连接车货两端，提供“互联网+”同城物流服务。2014年，货拉拉进入内地，并始终坚持内地与海外市场的双线发展，截至目前，货拉拉平台已经拥有注册司机300万以上，并服务于2800万用户。</p>
     </div>
     <MyShare />
-    <CommentList />
+    <CommentList :commentData="commentData"/>
     <Comment />
   </div>
 </template>
@@ -23,6 +23,7 @@ import MyShare from '@/components/MyShare'
 import CommentList from '@/components/CommentList'
 import Comment from '@/components/Comment'
 import { getPostComments } from '@/api'
+/* getCommentPraise */
 export default {
   // validate({ params }) {
   //   // Must be a number

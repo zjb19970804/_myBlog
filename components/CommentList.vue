@@ -1,13 +1,13 @@
 <template>
   <a-list
     class="comment-list"
-    :header="`${dataSource.length} 条回复`"
+    :header="`${commentData.CommentList.length} 条回复`"
     itemLayout="horizontal"
-    :dataSource="dataSource"
+    :dataSource="commentData.CommentList"
   >
-    <a-list-item slot="renderItem" slot-scope="item, index" :key="index">
+    <a-list-item slot="renderItem" slot-scope="item" :key="item.commentId">
       <a-comment
-        :author="item.author"
+        :author="item.userName"
         :avatar="item.avatar"
       >
         <template slot="actions">
@@ -15,44 +15,49 @@
             <a-icon
               type="like"
               :theme="action === 'liked' ? 'filled' : 'outlined'"
-              @click="like"
+              @click="thumbsUp(item.commentId, true)"
             />
           </span>
           <span>
             <a-icon
               type="dislike"
               :theme="action === 'disliked' ? 'filled' : 'outlined'"
-              @click="dislike"
+              @click="thumbsUp(item.commentId, false)"
             />
           </span>
-          <span>{{item.actions}}</span>
+          <span>回复</span>
         </template>
-        <p slot="content">{{item.content}}</p>
-        <span slot="datetime">{{item.datetime}}</span>
+        <p slot="content">{{item.msg}}</p>
+        <span slot="datetime">2018-04-03</span>
       </a-comment>
     </a-list-item>
   </a-list>
 </template>
 
 <script>
+import { giveThumbsUp } from '@/api'
+const { log } = console
 export default {
-  data: () => ({
-    dataSource: [
-      {
-        actions: '回复',
-        author: 'Han Solo',
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-        datetime: '2018-04-03'
-      },
-      {
-        actions: '回复',
-        author: 'Han Solo',
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-        datetime: '2018-04-03'
+  props: {
+    // 评论的数据
+    commentData: {
+      type: Object,
+      default: function() {
+        return {}
       }
-    ]
-  })
+    }
+  },
+  data: () => ({}),
+  methods: {
+    // @vuese
+    // 点赞
+    async thumbsUp(id, actions) {
+      const { data } = await giveThumbsUp({
+        commentId: id,
+        actions
+      })
+      log(data)
+    }
+  }
 }
 </script>

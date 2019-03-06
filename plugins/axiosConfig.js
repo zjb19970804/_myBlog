@@ -1,8 +1,10 @@
 import axios from 'axios'
 import qs from 'qs'
-
-let _store
-export default ({ store }) => (_store = store)
+let _store, _error
+export default ({ store, error }) => {
+  _store = store
+  _error = error
+}
 axios.defaults.baseURL = process.env === 'production' ? '' : 'http://127.0.0.1:7001'
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 10000
@@ -24,6 +26,10 @@ axios.interceptors.response.use(
     return response
   },
   (error) => {
+    _error({
+      statusCode: -1,
+      message: error.response.data.message
+    })
     return Promise.reject(error)
   }
 )

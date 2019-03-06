@@ -16,3 +16,11 @@ export const getPostDetail = (params) => {
 export const getPostComments = (params) => {
   return axios.get('/blog/postComments', { params }).then((res) => res.data)
 }
+// 获取评论的点赞数
+export const getCommentPraise = (params) => {
+  return axios.get('/blog/commentPraise', { params }).then((res) => res.data)
+}
+// 对评论点赞
+export const giveThumbsUp = (data) => {
+  return axios.post('/blog/thumbsUp', data).then((res) => res.data)
+}

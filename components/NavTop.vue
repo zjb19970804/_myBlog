@@ -1,6 +1,6 @@
 <template>
   <transition name="slideNav">
-    <div class="nav-top" v-show="isShow">
+    <div class="nav-top" :class="{_blue: !isShow}">
       <div class="myContainer flexAlignCenter mynav-box">
         <nuxt-link to="/" class="mynav-box-title">影子比阳光美的博客</nuxt-link>
         <ul class="mynav-box-link">
@@ -8,16 +8,7 @@
             <nuxt-link to="/">首页</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/article">学习</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="/">其它</nuxt-link>
-          </li>
-          <li>
             <nuxt-link to="/about">关于</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="/">留言</nuxt-link>
           </li>
         </ul>
         <div class="mynav-box-user">
@@ -27,8 +18,7 @@
           </div>
           <!-- 未登录状态 -->
           <div v-else class="unlogin">
-            <nuxt-link rel="nofollow" to="/login">登录</nuxt-link>
-            <nuxt-link rel="nofollow" to="/reg">注册</nuxt-link>
+            <a-button type="primary" @click.stop="login">登录</a-button>
           </div>
         </div>
       </div>
@@ -54,7 +44,7 @@ export default {
     // 移除监听事件
     document.removeEventListener('scroll', this.listenScroll)
   },
-  computed: mapState(['token']),
+  computed: mapState(['token', 'clientId']),
   methods: {
     ...mapMutations(['setToken', 'setUser']),
     // @vuese
@@ -65,11 +55,19 @@ export default {
       this.scrollTop = newScrollTop
     },
     // @vuese
+    // 登录
+    login() {
+      const url = `https://github.com/login/oauth/authorize?client_id=${this.clientId}&redirect_uri=${window.location.origin}/login&scope=user:email`
+      Cookie.set('lastUrl', this.$route.fullPath)
+      window.location.href = url
+    },
+    // @vuese
     // 退出登录
     logout() {
       this.setToken()
       this.setUser()
       Cookie.remove('token')
+      Cookie.remove('lastUrl')
     }
   }
 }
@@ -92,20 +90,29 @@ export default {
   height: 60px;
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s;
+  transition: all 0.6s;
   .mynav-box {
     height: inherit;
     &-title {
+      @media screen and(max-width: 750px) {
+        font-size: 18px;
+        text-indent: 1em;
+      }
       letter-spacing: 2px;
       color: #0088f5;
-      font-size: 24px;
-      margin-right: 100px;
+      font-size: 22px;
     }
     &-link {
       height: inherit;
       line-height: 60px;
       font-size: 16px;
+      margin: 0 auto;
       li {
+        @media screen and(max-width: 750px) {
+          width: auto;
+          margin: 0 4px;
+          font-size: 14px;
+        }
         float: left;
         width: 100px;
         a {
@@ -113,14 +120,19 @@ export default {
           width: 100%;
           text-align: center;
         }
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.1);
-        }
       }
     }
     &-user {
       margin-left: auto;
+      line-height: 26px;
     }
+  }
+}
+
+._blue {
+  background-color: rgba(0, 0, 0, 0.6);
+  a {
+    color: #fff !important;
   }
 }
 </style>

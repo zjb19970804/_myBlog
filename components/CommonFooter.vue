@@ -1,9 +1,10 @@
 <template>
   <div class="CommonFooter flexAlignCenter">
     <div class="myContainer">
-      本页面由Nuxt+Koa2打造, 学习请前往
+      本页面由Nuxt+egg+mongodb打造, 学习请前往
       <a href="https://zh.nuxtjs.org" target="_blank" rel="nofollow">Nuxt</a>、
-      <a href="https://koa.bootcss.com/" target="_blank" rel="nofollow">Koa2</a>
+      <a href="https://eggjs.org/zh-cn/" target="_blank" rel="nofollow">egg</a>、
+      <a href="https://docs.mongodb.com/manual/" target="_blank" rel="nofollow">mongodb</a>
     </div>
   </div>
 </template>
@@ -14,6 +15,9 @@ export default {}
 
 <style lang="less" scoped>
 .CommonFooter {
+  @media screen and(max-width: 750px) {
+    margin-top: 32px;
+  }
   margin-top: 50px;
   height: 76px;
   color: #eee;

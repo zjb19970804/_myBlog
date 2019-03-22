@@ -1,6 +1,6 @@
 <template>
   <div class="mainContent">
-    <p>介系一个登露页面</p>
+    <p>介系一个登露回调页面</p>
   </div>
 </template>
 
@@ -24,6 +24,12 @@ export default {
       Cookie.set('token', this.token)
     } else {
       Cookie.remove('token')
+    }
+    const lastUrl = Cookie.get('lastUrl')
+    if (lastUrl) {
+      this.$router.replace(lastUrl)
+    } else {
+      this.$router.replace('/')
     }
   }
 }

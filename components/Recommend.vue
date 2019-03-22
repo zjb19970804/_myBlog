@@ -1,33 +1,66 @@
 <template>
   <div class="Recommend myCard">
     <h3 class="myTitle">推荐阅读</h3>
-    <ul class="Recommend-list">
-      <li class="Recommend-item" v-for="item in 10" :key="item">
-        <nuxt-link to="/">
-          <img src="http://placehold.it/80x56" alt="">
-          <div class="list-right">
-            <p class="Recommend-item-title">用SVG画出拼图块，并实现拼图功能，请收下我的膝盖</p>
-            <div class="Recommend-item-btm">
-              <div>
-                <i class="iconfont icon-time"></i>
-                <span>2018-06-04</span>
-              </div>
-              <div>
-                <i class="iconfont icon-browse"></i>
-                <span>20次阅读</span>
+    <a-skeleton active :paragraph="{rows: 16}" :loading="loading">
+      <ul
+        class="Recommend-list"
+        id="_ul"
+      >
+        <li
+          class="Recommend-item"
+          v-for="item in recommendData"
+          :key="item._id"
+        >
+          <nuxt-link :to="`/article/${item._id}`">
+            <img
+              :src="imageUrl + item.poster"
+              alt=""
+            >
+            <div class="list-right">
+              <p class="Recommend-item-title">{{ item.title }}</p>
+              <div class="Recommend-item-btm">
+                <div>
+                  <i class="iconfont icon-time"></i>
+                  <span>{{ item._id | formatDate('YYYY-MM-DD') }}</span>
+                </div>
+                <div>
+                  <i class="iconfont icon-browse"></i>
+                  <span>{{ item.watchTimes }}次阅读</span>
+                </div>
               </div>
             </div>
-          </div>
-        </nuxt-link>
-      </li>
-    </ul>
+          </nuxt-link>
+        </li>
+      </ul>
+    </a-skeleton>
   </div>
 </template>
+
+<script>
+import { getRecommendPost } from '@/api'
+import { mapState } from 'vuex'
+export default {
+  data: () => ({
+    recommendData: []
+  }),
+  async mounted() {
+    const { data } = await getRecommendPost()
+    this.recommendData = data
+  },
+  computed: {
+    ...mapState(['imageUrl']),
+    loading() {
+      return this.recommendData.length <= 0
+    }
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .Recommend {
   &-list {
     padding: 0;
+    transition: all 1s;
   }
   &-item {
     &:not(:last-child) {
@@ -37,12 +70,16 @@
       .Recommend-item-title {
         color: #e4467c;
       }
+      img {
+        transform: scale(1.2);
+      }
     }
     a {
       padding: 10px 15px;
       display: flex;
       align-items: center;
       img {
+        transition: all 0.3s;
         flex: 0 0 80px;
         width: 80px;
         height: 56px;

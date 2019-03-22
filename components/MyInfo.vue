@@ -9,18 +9,18 @@
         <span>湖北，武汉</span>
       </p>
     </div>
-    <div class="myInfo-middle">
+    <div class="myInfo-middle" v-if="Object.keys(info).length>0">
       <div>
-        <span>帖子</span>
-        <b>35</b>
+        <span>原创</span>
+        <b>{{ info.originalNum }}</b>
       </div>
       <div>
-        <span>分类</span>
-        <b>35</b>
+        <span>转载</span>
+        <b>{{ info.reprintNum }}</b>
       </div>
       <div>
         <span>标签</span>
-        <b>35</b>
+        <b>{{ info.labelNum }}</b>
       </div>
     </div>
     <a-button type="primary" block @click="getStar">给个小星星</a-button>
@@ -28,10 +28,15 @@
 </template>
 
 <script>
+import { getBloginfo } from '@/api'
 export default {
   data: () => ({
-    info: null
+    info: {}
   }),
+  async mounted() {
+    const { data } = await getBloginfo()
+    this.info = data
+  },
   methods: {
     getStar() {
       window.open('https://github.com/zjb19970804/_myBlog')

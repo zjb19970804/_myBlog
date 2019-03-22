@@ -2,15 +2,19 @@
   <div class="MainContent">
     <div class="main-item" v-for="item in postData" :key="item._id">
       <nuxt-link :to="`/article/${item._id}`" class="main-item-img">
-        <img src="http://placehold.it/800x200" alt="">
+        <img :src="imageUrl + item.poster" alt="">
+        <span class="reprint">{{ !!item.reprint ? '转载' : '原创' }}</span>
       </nuxt-link>
       <div class="main-item-right">
         <nuxt-link class="main-item-title" :to="`/article/${item._id}`">{{ item.title }}</nuxt-link>
-        <p class="main-item-content">{{ item.content }}</p>
+        <nuxt-link :to="`/label/${item.labelId}`" class="labelBtn">
+          <a-button type="primary">{{ item.label }}</a-button>
+        </nuxt-link>
+        <p class="main-item-content">{{ item.content | replaceHtml }}</p>
         <div class="main-item-btm">
           <div class="iconAndText">
             <i class="iconfont icon-time"></i>
-            <span>{{ item.updateTime }}</span>
+            <span>{{ item._id | formatDate }}</span>
           </div>
           <div class="iconAndText">
             <i class="iconfont icon-browse"></i>
@@ -26,6 +30,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     postData: {
@@ -34,7 +39,8 @@ export default {
         return []
       }
     }
-  }
+  },
+  computed: mapState(['imageUrl'])
 }
 </script>
 
@@ -54,10 +60,27 @@ export default {
       border-color: rgba(0, 0, 0, 0.09);
     }
     &-img {
+      display: inline-block;
+      position: relative;
       width: 100%;
+      height: 200px;
       img {
         width: 100%;
         height: 200px;
+      }
+      .reprint {
+        position: absolute;
+        right: -33px;
+        top: -8px;
+        background-color: #4fc08d;
+        transform: rotate(45deg);
+        width: 100px;
+        height: 50px;
+        white-space: nowrap;
+        line-height: 64px;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 4px;
       }
     }
     &-right {
@@ -70,6 +93,14 @@ export default {
     &-title {
       color: #555;
       font-size: 18px;
+      margin-bottom: 10px;
+      align-self: flex-start;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .labelBtn {
+      align-self: flex-start;
       margin-bottom: 10px;
     }
     &-content {

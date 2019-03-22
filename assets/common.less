@@ -16,10 +16,22 @@
   display: flex;
 }
 .mainContent {
-  flex: 1;
+  @media screen and (max-width: 750px) {
+    margin: 0 auto;
+  }
+  margin-left: 310px;
+  min-height: calc(100vh - 80px - 126px);
+  width: 600px;
   padding: 0 10px;
 }
+.ant-pagination {
+  margin-top: 50px;
+  text-align: center;
+}
 .myColumns {
+  @media screen and (max-width: 750px) {
+    margin: 0;
+  }
   align-items: flex-start;
   margin-left: -10px;
   margin-right: -10px;
@@ -43,4 +55,16 @@
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+.ant-skeleton-content {
+  padding: 0 10px 10px;
+}
+
+th,
+tr,
+td {
+  border: 1px solid #e6e6e6;
+  padding: 5px 8px;
+  word-break: normal;
 }

@@ -23,12 +23,15 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response) => {
+    if (response.data.code === -1) {
+      _store.commit('setToken')
+    }
     return response
   },
   (error) => {
     _error({
       statusCode: -1,
-      message: error.response.data.message
+      message: error
     })
     return Promise.reject(error)
   }

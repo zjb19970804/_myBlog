@@ -2,17 +2,7 @@
   <div>
     <!-- 顶部导航栏 -->
     <NavTop />
-
-    <div class="myContainer">
-      <div class="flex myColumns">
-        <SlideLeft />
-
-        <nuxt />
-
-        <SlideRight />
-      </div>
-    </div>
-
+    <App />
     <!-- 底部通用组件 -->
     <CommonFooter />
     <!-- 页面滑至顶部组件 -->
@@ -23,14 +13,12 @@
 <script>
 import NavTop from '../components/NavTop'
 import CommonFooter from '../components/CommonFooter'
-import SlideLeft from '../components/SlideLeft'
-import SlideRight from '../components/SlideRight'
+import App from '../components/App'
 export default {
   components: {
     NavTop,
     CommonFooter,
-    SlideLeft,
-    SlideRight
+    App
   }
 }
 </script>

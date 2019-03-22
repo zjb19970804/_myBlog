@@ -1,30 +1,37 @@
 <template>
   <div class="lastest myCard">
-    <h3 class="myTitle">最近更新</h3>
-    <div class="lastest-list">
-      <div class="lastest-list-item" v-for="item in 6" :key="item">
-        <img src="http://placehold.it/50x50" alt="">
-        <div class="lastest-item-right">
-          <p>2018-08-04</p>
-          <nuxt-link to="/">啊士大夫飒飒啊</nuxt-link>
+    <h3 class="myTitle">热门文章</h3>
+    <a-skeleton active :paragraph="{rows: 12}" :loading="loading">
+      <div class="lastest-list">
+        <div class="lastest-list-item" v-for="item in hotPosts" :key="item._id">
+          <img :src="imageUrl + item.poster" alt="">
+          <div class="lastest-item-right">
+            <p>{{ item._id | formatDate('YYYY-MM-DD') }}</p>
+            <nuxt-link to="/">{{ item.title }}</nuxt-link>
+          </div>
         </div>
       </div>
-      <div class="lastest-list-item">
-        <img src="http://placehold.it/50x50" alt="">
-        <div class="lastest-item-right">
-          <p>2018-08-04</p>
-          <nuxt-link to="/">啊士大夫飒飒啊啊士大夫飒飒啊啊士大夫飒飒啊啊士啊啊大</nuxt-link>
-        </div>
-      </div>
-    </div>
+    </a-skeleton>
   </div>
 </template>
 
 <script>
+import { hotPostList } from '@/api'
+import { mapState } from 'vuex'
 export default {
   data: () => ({
-    data: null
-  })
+    hotPosts: []
+  }),
+  async mounted() {
+    const { data } = await hotPostList()
+    this.hotPosts = data
+  },
+  computed: {
+    ...mapState(['imageUrl']),
+    loading() {
+      return this.hotPosts.length <= 0
+    }
+  }
 }
 </script>
 

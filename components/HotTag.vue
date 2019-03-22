@@ -1,48 +1,34 @@
 <template>
   <div class="hotTag myCard">
-    <h3 class="myTitle">热门标签</h3>
-    <ul class="hotTag-list">
-      <li>
-        <nuxt-link to="/">
-          <a-button>test</a-button>
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/">
-          <a-button>test</a-button>
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/">
-          <a-button>testsss</a-button>
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/">
-          <a-button>test</a-button>
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/">
-          <a-button>test</a-button>
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/">
-          <a-button>test</a-button>
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/">
-          <a-button>testsss</a-button>
-        </nuxt-link>
-      </li>
-    </ul>
+    <h3 class="myTitle">标签分类</h3>
+    <a-skeleton active :loading="loading">
+      <ul v-if="!loading" class="hotTag-list">
+        <li v-for="item in labelData" :key="item._id">
+          <nuxt-link :to="`/label/${item._id}`">
+            <a-button>{{ item.text }}</a-button>
+          </nuxt-link>
+        </li>
+      </ul>
+    </a-skeleton>
   </div>
 </template>
 
 <script>
-export default {}
+import { getHotLabel } from '@/api'
+export default {
+  data: () => ({
+    labelData: []
+  }),
+  async mounted() {
+    const { data } = await getHotLabel()
+    this.labelData = data
+  },
+  computed: {
+    loading() {
+      return this.labelData.length <= 0
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>

@@ -18,7 +18,11 @@ export default {
 
 <style lang="less" scoped>
 .slideLeft {
-  flex: 0.5;
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+  width: 310px;
   padding: 0 10px;
+  position: fixed;
 }
 </style>

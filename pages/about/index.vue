@@ -1,7 +1,7 @@
 <template>
   <div class="about mainContent myCard">
     <!-- 个人信息 -->
-    <!-- <div class="about-profile">
+    <div class="about-profile">
       <img
         src="/globl/avatar.jpg"
         alt="博主头像"
@@ -14,20 +14,19 @@
           欢迎大佬带我啊啊啊啊啊啊啊啊啊...
         </p>
       </div>
-    </div> -->
+    </div>
     <!-- 个人介绍 -->
     <div class="about-box">
       <div class="about-personl">
         <div class="about-title">
           简短介绍
         </div>
-        <p>来自湖北武汉，18年正式参加工作，一直努力学习前端技术，一边工作一边积累经验。平时喜欢打打游戏(死肥宅天下第一！)，听听歌，看电影，每天都会抽出一两小时查看学习新技术，新黑科技。例如本网站的后台node开发、nginx部署，之前并没有接触过服务器端，都是闲暇时间查阅资料。所谓多一门技术多一点生存技能，哈哈哈哈。</p>
-        <p>实在不知道说什么，祝大哥大嫂们过年好。</p>
+        <p>97年，来自湖北武汉，18年初参加工作。平时喜欢打打游戏(死肥宅天下第一)，听歌，看电影，每天会抽出一两小时查看学习新技术。例如本网站的后台node接口开发、mongodb设计、nginx部署，之前并没有接触过服务器端，都是闲暇时间查阅资料。技多不压身。。。</p>
       </div>
       <!-- 菜鸡推荐 -->
       <div class="about-recommend">
         <p class="about-recommend-title">
-          如果你是前端菜鸡，那么以下的链接对你的前端学习会有一定帮助，当然，这种事情还是要看自己，多动手多练，光看是不够滴。
+          如果你是刚踏入前端的菜鸡，那么下面链接可能对你的前端学习会有一定帮助，最好多练下。
         </p>
         <ul class="about-recommend-list">
           <li v-for="(item, index) in recommendData" :key="index">
@@ -73,7 +72,7 @@ export default {
         url: 'https://stackoverflow.com/'
       },
       {
-        title: 'github: 主角隆重登场~！全球最大同性交友网站(邪恶.jpg)!!!',
+        title: 'github: 全球最大同性交友网站!',
         url: 'https://github.com/'
       }
     ]
@@ -94,9 +93,12 @@ export default {
     line-height: 48px;
   }
   &-profile {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+    display: none;
+    @media screen and(max-width: 750px) {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+    }
     img {
       flex: 0 0 100px;
       width: 100px;

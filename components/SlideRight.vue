@@ -1,7 +1,9 @@
 <template>
   <div class="slideRight">
-    <HotTag />
-    <Recommend />
+    <div class="_fixed">
+      <HotTag />
+      <Recommend />
+    </div>
   </div>
 </template>
 
@@ -12,16 +14,20 @@ export default {
   components: {
     HotTag,
     Recommend
-  },
-  data: () => ({
-    data: null
-  })
+  }
 }
 </script>
 
 <style lang="less" scoped>
 .slideRight {
-  flex: 0.5;
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+  width: 310px;
   padding: 0 10px;
+  ._fixed {
+    position: fixed;
+    width: 290px;
+  }
 }
 </style>

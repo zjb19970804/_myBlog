@@ -5,7 +5,7 @@ export default ({ store, error }) => {
   _store = store
   _error = error
 }
-axios.defaults.baseURL = process.env === 'production' ? '' : 'http://127.0.0.1:7001'
+axios.defaults.baseURL = process.env === 'production' ? 'http://45.77.86.164:7001' : 'http://127.0.0.1:7001'
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 10000
 axios.interceptors.request.use(

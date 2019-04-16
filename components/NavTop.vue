@@ -83,6 +83,7 @@ export default {
   opacity: 0;
 }
 .nav-top {
+  padding: 0 10px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -96,7 +97,6 @@ export default {
     &-title {
       @media screen and(max-width: 750px) {
         font-size: 18px;
-        text-indent: 1em;
       }
       letter-spacing: 2px;
       color: #0088f5;

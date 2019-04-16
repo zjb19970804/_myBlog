@@ -23,6 +23,5 @@ export default {
   }
   width: 310px;
   padding: 0 10px;
-  position: fixed;
 }
 </style>

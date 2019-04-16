@@ -8,7 +8,7 @@ export default () =>
     state: {
       token: null,
       clientId: 'b17fdfd4cd7c3ccf21de',
-      imageUrl: process.env === 'production' ? 'http://45.77.86.164:7001' :'http://127.0.0.1:7001'
+      imageUrl: process.env === 'production' ? 'http://45.77.86.164:7001' : 'http://127.0.0.1:7001'
     },
     mutations: {
       setToken(state, value = null) {

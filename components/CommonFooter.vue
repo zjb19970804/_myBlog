@@ -18,6 +18,7 @@ export default {}
   @media screen and(max-width: 750px) {
     margin-top: 32px;
   }
+  padding: 0 20px;
   margin-top: 50px;
   height: 76px;
   color: #eee;

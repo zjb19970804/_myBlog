@@ -1,9 +1,7 @@
 <template>
   <div class="slideRight">
-    <div class="_fixed">
-      <HotTag />
-      <Recommend />
-    </div>
+    <HotTag />
+    <Recommend />
   </div>
 </template>
 
@@ -25,9 +23,5 @@ export default {
   }
   width: 310px;
   padding: 0 10px;
-  ._fixed {
-    position: fixed;
-    width: 290px;
-  }
 }
 </style>
